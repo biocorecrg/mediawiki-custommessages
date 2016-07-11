@@ -62,7 +62,7 @@
 						$(selector).append( msgSet[msg] );
 					} else  {
 						if ( output !== "" ) {
-							$(selector).prop( output, msgSet[msg] );
+							$(selector).attr( output, msgSet[msg] );
 						}
 					}
 				}
