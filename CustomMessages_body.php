@@ -14,7 +14,14 @@ class CustomMessages {
 			// Add clasess 'custommessages' to body
 			// Add source elemements
 			$source = trim( $frame->expand( $args[0] ) );
-			$output = "<span class='mw-custommessages' data-source='".$source."'></span>";
+
+			$format = "ini";
+
+			if ( isset( $args[1]) && !empty( $args[1] ) ) {
+				$format = trim( $frame->expand( $args[1] ) );
+			}
+
+			$output = "<span class='mw-custommessages' data-source='".$source."' data-format='".$format."'></span>";
 
 		}
 
@@ -47,7 +54,7 @@ class CustomMessages {
 						$key = trim( $parts[0] );
 						$value = trim( $parts[1] );
 
-						$messages[ self::formatKey( $pagename."-".$key ) ] = $value;
+						$messages[ self::formatKey( $key ) ] = $value;
 					}
 				}
 			}
