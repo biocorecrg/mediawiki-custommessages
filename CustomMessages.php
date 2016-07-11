@@ -42,12 +42,12 @@ call_user_func( function() {
 
 });
 
-function wfBioDBParserFunction_Setup( &$parser ) {
-	$parser->setFunctionHook( 'CustomMsg', 'BioDB::loadMessages', SFH_OBJECT_ARGS );
+function wfCustomMessagesParserFunction_Setup( &$parser ) {
+	$parser->setFunctionHook( 'CustomMsg', 'CustomMessages::loadMessages', SFH_OBJECT_ARGS );
 	return true;
 }
 
-function wfBioDBParserFunction_Magic( &$magicWords, $langCode ) {
+function wfCustomMessagesParserFunction_Magic( &$magicWords, $langCode ) {
 	$magicWords['CustomMsg'] = array( 0, 'CustomMsg' );
 	# unless we return true, other parser functions extensions won't get loaded.
 	return true;

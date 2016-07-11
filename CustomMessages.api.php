@@ -5,7 +5,11 @@ class ApiCustomMessages extends ApiBase {
 
 		$params = $this->extractRequestParams();
 		
-		$messages = CustomMessages::processMessages( $params['source'], $params['format'] );
+		if ( empty( $params['format-source'] ) ) {
+			$params['format-source'] = "ini";
+		}
+
+		$messages = CustomMessages::processMessages( $params['source'], $params['format-source'] );
 
 		$this->getResult()->addValue( null, $this->getModuleName(), array ( 'messages' => $messages ) );
 	}
@@ -16,7 +20,7 @@ class ApiCustomMessages extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'format' => array(
+			'format-source' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => false
 			)	
@@ -31,7 +35,7 @@ class ApiCustomMessages extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'source' => 'Source page of the messages',
-			'format' => 'Format of the page'
+			'format-source' => 'Format of the page'
 		);
 	}
 
