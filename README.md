@@ -5,10 +5,10 @@ Extension for allowing easy input of JavaScript messages that can be mantained i
 
 ## Configuration
 
-// Namespaces to be used for storing information
+    // Namespaces to be used for storing information
     $wgCustomMessagesNamespaces = array( NS_HELP );
 
-// Namespace type. Default is ini style. Only one available so far.
+    // Namespace type. Default is ini style. Only one available so far.
     $wgCustomMessagesNamespacesTypes = array( NS_HELP  => "ini" );
 
 # Examples 
