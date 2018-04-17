@@ -15,8 +15,8 @@ Extension for allowing easy input of JavaScript messages that can be mantained i
 
 In Help:Event
 
-;add=Clicking here adds new features
-;properties=This option allows the acquisition of new properties
+    ;add=Clicking here adds new features
+    ;properties=This option allows the acquisition of new properties
 
 The two examples above are available via
 
