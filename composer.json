@@ -1,0 +1,32 @@
+{
+	"name": "mediawiki/custommessages",
+	"type": "mediawiki-extension",
+	"description": "MediaWiki extension to print custom messages via tooltips or other JavaScript enabled methods",
+	"keywords": [
+		"mediawiki",
+		"extension",
+		"messages",
+		"parserhook"
+	],
+	"homepage": "https://www.mediawiki.org/wiki/User:Toniher",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Toni Hermoso Pulido",
+			"email": "toni.hermoso@crg.eu",
+			"homepage": "https://www.mediawiki.org/wiki/User:Toniher",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/biocorecrg/mediawiki-custommessages/issues",
+		"source": "https://github.com/biocorecrg/mediawiki-custommessages"
+	},
+	"require": {
+		"php": ">=8.1",
+		"composer/installers": "^1.0|^2.0"
+	},
+	"extra": {
+		"installer-name": "CustomMessages"
+	}
+}
