@@ -2,6 +2,13 @@
 
 Extension for allowing easy input of JavaScript messages that can be mantained in an easy way
 
+Requires MediaWiki 1.43 or later.
+
+## Installation
+
+Place the extension in `extensions/CustomMessages` and add to `LocalSettings.php`:
+
+    wfLoadExtension( 'CustomMessages' );
 
 ## Configuration
 

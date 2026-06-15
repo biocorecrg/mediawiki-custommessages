@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toniher"
+		]
+	},
+	"custommessages-desc": "{{desc|name=CustomMessages|url=https://www.mediawiki.org/wiki/User:Toniher}}",
+	"apihelp-custommsg-summary": "{{doc-apihelp-summary|custommsg}}",
+	"apihelp-custommsg-param-source": "{{doc-apihelp-param|custommsg|source}}",
+	"apihelp-custommsg-param-format-source": "{{doc-apihelp-param|custommsg|format-source}}",
+	"apihelp-custommsg-example-1": "{{doc-apihelp-example|custommsg}}"
+}

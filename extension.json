@@ -1,0 +1,60 @@
+{
+	"name": "CustomMessages",
+	"version": "0.2.0",
+	"author": [
+		"Toniher"
+	],
+	"url": "https://www.mediawiki.org/wiki/User:Toniher",
+	"descriptionmsg": "custommessages-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.43.0"
+	},
+	"AutoloadClasses": {
+		"CustomMessages": "CustomMessages_body.php",
+		"ApiCustomMessages": "CustomMessages.api.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "CustomMessages::onParserFirstCallInit"
+	},
+	"APIModules": {
+		"custommsg": "ApiCustomMessages"
+	},
+	"MessagesDirs": {
+		"CustomMessages": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"CustomMessagesMagic": "CustomMessages.i18n.magic.php"
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "CustomMessages"
+	},
+	"ResourceModules": {
+		"ext.CustomMessages": {
+			"scripts": [
+				"libs/main.js"
+			],
+			"styles": [
+				"styles/main.css"
+			],
+			"dependencies": [
+				"mediawiki.api"
+			]
+		}
+	},
+	"config": {
+		"CustomMessagesNamespaces": {
+			"value": [],
+			"description": "Namespaces to be used for storing custom messages."
+		},
+		"CustomMessagesNamespacesTypes": {
+			"value": [],
+			"description": "Map of namespace => format used to parse custom messages (only \"ini\" is currently supported)."
+		}
+	},
+	"manifest_version": 2
+}

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toniher"
+		]
+	},
+	"custommessages-desc": "Print custom messages via tooltips or other JavaScript enabled methods",
+	"apihelp-custommsg-summary": "Fetch custom messages stored on a wiki page.",
+	"apihelp-custommsg-param-source": "Source page that holds the messages.",
+	"apihelp-custommsg-param-format-source": "Format used to parse the source page (currently only <kbd>ini</kbd>).",
+	"apihelp-custommsg-example-1": "Fetch INI-formatted messages from <kbd>Help:Event</kbd>."
+}

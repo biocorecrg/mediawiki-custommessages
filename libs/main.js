@@ -1,73 +1,59 @@
 /* jshint strict:true, browser:true */
-( function( $, mw ) {
+( function () {
+	'use strict';
 
-	$(document).ready(function(){
+	$( function () {
 
-		$(".mw-custommessages").each( function( iter ) {
-			var selector = this;
-		
-			var source = $(selector).data('source');
-			var format = $(selector).data('format');
+		$( '.mw-custommessages' ).each( function () {
+			var $source = $( this );
+
+			var source = $source.data( 'source' );
+			var format = $source.data( 'format' ) || 'ini';
 
 			if ( source ) {
 				// We assume here split by ,
-				var pagenames = source.split(",");
-				for (var i = 0; i < pagenames.length; i++) {
-				
-					// API Call here
-					callCustomMessagesApi( pagenames[i], format, function( response ) {
-						if ( response && response['custommsg'] && response['custommsg']['messages'] ) {
-							modifyDOMwithMessages( source, response['custommsg']['messages'] );
+				String( source ).split( ',' ).forEach( function ( pagename ) {
+
+					// API call here
+					callCustomMessagesApi( pagename, format ).then( function ( response ) {
+						if ( response && response.custommsg && response.custommsg.messages ) {
+							modifyDOMwithMessages( response.custommsg.messages );
 						}
-					});
-				}
+					}, function () {
+						mw.log.error( 'CustomMessages: API request failed for ' + pagename );
+					} );
+				} );
 			}
-		});
-	});
+		} );
+	} );
 
-	function callCustomMessagesApi( pagename, format, callback ) {
-	
-		var params = {};
-		params['source'] = pagename;
-		params['format-source'] = format;
-		params['format'] = "json";
-		params['action'] = "custommsg";
-	
-		var posting = $.get( wgScriptPath + "/api.php", params );
-		posting.done(function( data ) {
-			callback( data );
-		}).fail( function( data ) {
-			callback( null );
-			console.log("Error!");
-		});
-	}
-	
-	function modifyDOMwithMessages( source, msgSet ) {
-	
-		$(".mw-custommessages-value").each( function( iter ) {
-	
-			var selector = this;
-			var msg = $(selector).data('msg');
-			var output = $(selector).data('output');
-			if ( ! output ) {
-				output = "append";
-			}
-
-			if ( msg ) {
-
-				if ( msgSet.hasOwnProperty( msg ) ) {
-
-					// Flexible handling here
-					if ( output === 'append' ) {
-						$(selector).append( msgSet[msg] );
-					} else  {
-						if ( output !== "" ) {
-							$(selector).attr( output, msgSet[msg] );
-						}
-					}
-				}
-			}
-		});
+	function callCustomMessagesApi( pagename, format ) {
+		var api = new mw.Api();
+		return api.get( {
+			action: 'custommsg',
+			source: pagename,
+			'format-source': format
+		} );
 	}
 
-} )( jQuery, mediaWiki );
+	function modifyDOMwithMessages( msgSet ) {
+
+		$( '.mw-custommessages-value' ).each( function () {
+
+			var $el = $( this );
+			var msg = $el.data( 'msg' );
+			var output = $el.data( 'output' ) || 'append';
+
+			if ( msg && Object.prototype.hasOwnProperty.call( msgSet, msg ) ) {
+
+				// Flexible handling here
+				if ( output === 'append' ) {
+					$el.append( msgSet[ msg ] );
+				} else if ( output !== '' ) {
+					$el.attr( output, msgSet[ msg ] );
+				}
+			}
+		} );
+	}
+
+}() );
